@@ -1,18 +1,20 @@
-const noteEntry = require("../")
+const router = require("express").Router();
+const store = require("../db/store");
 
-module.exports = (app) => {
-    app.get("./notes.html", (req, res) => res.json(noteEntry));
+module.exports = router;
+    router.get("/notes.html", (req, res) => {
+        store.getNotes().then((notes) => {
+            return res.json(notes);
+        })  
+        .catch((err) => res.status(500).json(err));
+    });
 
-    app.post("*", (req, res) => {
-        let id= noteEntry.length + 1;
-        req.body.id = parseInt(id);
-        noteEntry.push(req.body);
-        res.json(true);
-    })
+    router.post("/notes", (req, res) => {
+        store.addNote(req.body).then((note) => res.json(note)).catch((err) => res.status(500).json(err));
+    });
 
-    app.delete("", (req, res) => {
-        let entry = noteEntry.find(({id}) => id === JSON.parse(req.params.id));
-        noteEntry.splice(noteEntry.indexOf(entry), 1);
-        res.end();
-    })
-}
+    router.delete("/notes/:id", (req, res) => {
+        store.removeNote(req.params.id).then(() => res.json({ok: true})).catch((err) => res.status(500).json(err));
+    });
+
+module.exports = router;
