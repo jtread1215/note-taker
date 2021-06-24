@@ -5,17 +5,16 @@
   "main": "server.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node server.js"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/jtread1215/note-taker.git"
+    "start": "node server.js",
+    "watch": "nodemon server.js"
   },
   "author": "",
   "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/jtread1215/note-taker/issues"
+  "dependencies": {
+    "express": "^4.17.1",
+    "uuid": "^8.3.2"
   },
-  "homepage": "https://github.com/jtread1215/note-taker#readme",
-  "dependencies": {}
+  "devDependencies": {
+    "nodemon": "^2.0.7"
+  }
 }
