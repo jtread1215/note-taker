@@ -24,6 +24,6 @@ Save the note and enter another note.
 # Links
 Heroku: https://morning-ridge-60254.herokuapp.com/notes
 
-GitHub: 
+GitHub: https://jtread1215.github.io/note-taker/
 
 
